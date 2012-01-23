@@ -1,0 +1,5 @@
+" name: kernel
+" description: Coding style as per Linus Torvalds
+
+set tabstop=8
+set sw=8

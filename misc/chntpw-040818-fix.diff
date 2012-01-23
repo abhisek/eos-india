@@ -1,0 +1,29 @@
+--- /home/neo/x/chntpw.c	2004-08-19 02:12:01.000000000 +0530
++++ chntpw-source-040818/chntpw.c	2007-03-24 08:04:17.000000000 +0530
+@@ -511,7 +511,7 @@
+ 	printf("** LANMAN password IS however set. Will now install new password as NT pass instead.\n");
+ 	printf("** NOTE: Continue at own risk!\n");
+ 	ntpw_offs = lmpw_offs;
+-	(unsigned int)*(vp+0xa8) = ntpw_offs - 0xcc;
++	*((unsigned int*)(vp+0xa8)) = ntpw_offs - 0xcc;
+ 	ntpw_len = 16;
+ 	lmpw_len = 0;
+       }
+@@ -621,14 +621,14 @@
+ 	   ntpw_len = 16;
+ 	   lmpw_len = 16;
+ 	   ntpw_offs -= 4;
+-	   (unsigned int)*(vp+0xa8) = ntpw_offs - 0xcc;
++	   *((unsigned int*)(vp+0xa8)) = ntpw_offs - 0xcc;
+ 	   *(vp + 0xa0) = 16;
+ 	   *(vp + 0xac) = 16;
+ 	 }
+ 	 
+ 	 for (i = 0; i < 16; i++) {
+-	   (unsigned char)*(vp+ntpw_offs+i) = despw[i];
+-	   if (lmpw_len >= 16) (unsigned char)*(vp+lmpw_offs+i) = newlandes[i];
++	   *((unsigned char*)(vp+ntpw_offs+i)) = despw[i];
++	   if (lmpw_len >= 16) *((unsigned char*)(vp+lmpw_offs+i)) = newlandes[i];
+ 	 }
+        } else {
+ 	 printf("Unable to set since it is blank.\n");

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_ipv4 (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/**
+ * Builds a version 4 RFC 791 Internet Protocol (IP) header.
+ * 
+ * * @param len total length of the IP packet including all subsequent data
+ * * @param tos type of service bits
+ * * @param id IP identification number
+ * * @param frag fragmentation bits and offset
+ * * @param ttl time to live in the network
+ * * @param prot upper layer protocol
+ * * @param sum checksum (0 for libnet to autofill)
+ * * @param src source IPv4 address (string, eg. &quot;192.168.0.1&quot;)
+ * * @param dst destination IPv4 address (string, eg. &quot;192.168.0.2&quot;)
+ * * @param payload optional payload or NULL
+ * * @param payload_s payload length or 0
+ * * @param ptag protocol tag to modify an existing header, 0 to build a new one
+ *
+ * * @return protocol tag value on success, -1 on error
+*/
+
+static VALUE rb_libnet_build_ipv4(VALUE self,
+                                  VALUE len,
+                                  VALUE tos,
+                                  VALUE id,
+                                  VALUE frag,
+                                  VALUE ttl,
+                                  VALUE proto,
+                                  VALUE csum,
+                                  VALUE src,
+                                  VALUE dst,
+                                  VALUE payload,
+                                  VALUE payload_s,
+                                  VALUE tag)
+{
+   libnet_ptag_t p = -1;
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   DEBUG_PRINT(&quot;libnet_build_ipv4()&quot;);
+
+   if(lctx) 
+      p = libnet_build_ipv4(
+                           (u_int16_t)NUM2INT(len),
+                           (u_int8_t)NUM2INT(tos),
+                           (u_int16_t)NUM2INT(id),
+                           (u_int16_t)NUM2INT(frag),
+                           (u_int8_t)NUM2INT(ttl),
+                           (u_int8_t)NUM2INT(proto),
+                           (u_int16_t)NUM2INT(csum),
+                           inet_addr(StringValuePtr(src)),
+                           inet_addr(StringValuePtr(dst)),
+                           (payload == Qnil ? NULL : StringValuePtr(payload)),
+                           (payload_s == Qnil ? 0 : NUM2INT(payload_s)),
+                           lctx,
+                           (libnet_ptag_t)(tag == Qnil ? 0 : NUM2INT(tag))
+                           );
+                              
+   return INT2FIX(p);
+}</pre>
+</body>
+</html>

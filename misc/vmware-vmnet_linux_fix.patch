@@ -1,0 +1,83 @@
+diff -ur vmnet-only/bridge.c vmnet-only_patched/bridge.c
+--- vmnet-only/bridge.c	2007-05-02 09:38:22.000000000 +0530
++++ vmnet-only_patched/bridge.c	2007-12-21 12:28:59.000000000 +0530
+@@ -1083,12 +1083,21 @@
+ VNetBridgeComputeHeaderPos(struct sk_buff *skb) // IN: buffer to examine
+ {
+    /* Maybe some kernel gets it right... */
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 20)
+    if (skb->h.raw != skb->nh.raw) {
++#else
++   if (skb->transport_header != skb->network_header) {
++#endif
+       return;
+    }
+    switch (be16_to_cpu(skb->protocol)) {
+       case ETH_P_IP:
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 20)
+          skb->h.raw = skb->nh.raw + (skb->nh.raw[0] & 0x0F) * 4;
++#else
++         skb->transport_header = skb->network_header + 
++                                    (skb->network_header[0] & 0x0F) * 4;
++#endif
+ 	 return;
+       default:
+          LOG(3, (KERN_DEBUG "Unknown EII protocol %04X: csum at %d\n", 
+diff -ur vmnet-only/userif.c vmnet-only_patched/userif.c
+--- vmnet-only/userif.c	2007-05-02 09:38:22.000000000 +0530
++++ vmnet-only_patched/userif.c	2007-12-21 12:13:56.000000000 +0530
+@@ -627,13 +627,26 @@
+     */
+    if (skb->pkt_type == PACKET_OUTGOING && 	/* Packet must be outgoing */
+        skb->ip_summed == VM_CHECKSUM_PARTIAL &&	/* Without checksum */
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 20)
+        skb->h.raw != skb->nh.raw &&		/* We must know where header is */
++#else
++       skb->transport_header != skb->network_header &&
++#endif
+        skb->len == count) {			/* No truncation may occur */
+       size_t skl;
+       int csum;
+       u_int16_t csum16;
+-      
++
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 20)
+       skl = skb->h.raw - skb->data;
++#else
++#if defined(NET_SKBUFF_DATA_USES_OFFSET)
++      skl = skb->transport_header;  /* possibly not correct */
++#else
++      skl = skb->transport_header - skb->data;
++#endif
++#endif
++
+       if (VNetCopyDatagram(skb, buf, skl)) {
+ 	 return -EFAULT;
+       }
+diff -ur vmnet-only/vnetInt.h vmnet-only_patched/vnetInt.h
+--- vmnet-only/vnetInt.h	2007-05-02 09:38:22.000000000 +0530
++++ vmnet-only_patched/vnetInt.h	2007-12-21 12:09:15.000000000 +0530
+@@ -22,6 +22,7 @@
+       skb_datarefp(clone) == skb_datarefp(skb) \
+    )
+ #endif
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 20)
+ #define DEV_QUEUE_XMIT(skb, dev, pri)	(                 \
+     (skb)->dev = (dev),                                   \
+     (skb)->priority = (pri),                              \
+@@ -29,6 +30,15 @@
+     (skb)->nh.raw = (skb)->data + sizeof (struct ethhdr), \
+     dev_queue_xmit(skb)                                   \
+   )
++#else
++#define DEV_QUEUE_XMIT(skb, dev, pri)	(                 \
++    (skb)->dev = (dev),                                   \
++    (skb)->priority = (pri),                              \
++    (skb)->mac_header = (skb)->data,                         \
++    (skb)->network_header = (skb)->data + sizeof (struct ethhdr), \
++    dev_queue_xmit(skb)                                   \
++  )
++#endif
+ #ifdef KERNEL_2_3_15
+ #  define dev_lock_list()		read_lock(&dev_base_lock)
+ #  define dev_unlock_list()		read_unlock(&dev_base_lock)

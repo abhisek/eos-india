@@ -1,0 +1,7 @@
+" name: iviz
+" description: Coding style used in iViZ
+
+:set indentexpr=
+:set tabstop=3
+:set sw=3
+:set expandtab

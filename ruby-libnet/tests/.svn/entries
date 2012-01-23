@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="4"
+   name=""
+   committed-date="2006-12-28T12:07:16.782358Z"
+   url="svn+ssh://abhisek@ruby-libnet.rubyforge.org/var/svn/ruby-libnet/tests"
+   last-author="abhisek"
+   kind="dir"
+   repos="svn+ssh://abhisek@ruby-libnet.rubyforge.org/var/svn/ruby-libnet"
+   revision="9"/>
+<entry
+   committed-rev="4"
+   name="ping.rb"
+   text-time="2006-12-28T11:55:49.000000Z"
+   committed-date="2006-12-28T12:07:16.782358Z"
+   checksum="58c993bca92970efb6062dd64bb892f6"
+   last-author="abhisek"
+   kind="file"/>
+<entry
+   committed-rev="4"
+   name="icmpredir.rb"
+   text-time="2006-12-28T11:55:49.000000Z"
+   committed-date="2006-12-28T12:07:16.782358Z"
+   checksum="6a45e068551d43c899b9d193fd698b3f"
+   last-author="abhisek"
+   kind="file"/>
+<entry
+   committed-rev="4"
+   name="arping.rb"
+   text-time="2006-12-28T11:55:49.000000Z"
+   committed-date="2006-12-28T12:07:16.782358Z"
+   checksum="d46c9d32ca2ad3452f484793d305404d"
+   last-author="abhisek"
+   kind="file"/>
+<entry
+   committed-rev="4"
+   name="icmpmask.rb"
+   text-time="2006-12-28T11:55:49.000000Z"
+   committed-date="2006-12-28T12:07:16.782358Z"
+   checksum="423cdc05631e6b31144c79977ee344d4"
+   last-author="abhisek"
+   kind="file"/>
+</wc-entries>

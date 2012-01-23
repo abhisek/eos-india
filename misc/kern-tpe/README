@@ -1,0 +1,19 @@
+[-- Trusted Path Execution for Linux Kernel --]
+
+Q: When to deny execution?
+A: Deny always. Allow only when:
+      1) Executable is root owned and resides in root owned directory and the directory 
+         is not writable by group and world and the environment is not malicious.
+
+Q: Requirements?
+A: Linux Kernel 2.6 branch compiled with CONFIG_SECURITY (LSM support)
+
+Q: How to test?
+A: Follow these steps as root to install and configure:
+   make
+   insmod ./kern-tpe.ko
+   cat /proc/tpe/add
+   echo "%100" > /proc/tpe/add (to allow all users in gid 100 to execute anything)
+   echo "1000" > /proc/tpe/add (to allow only uid 1000 to execute everything)
+   cat /proc/tpe/add (to view current trust list)
+   * uid 0 always have full execution privilege

@@ -1,0 +1,87 @@
+--- Pcap.c	2000-08-13 11:26:31.000000000 +0530
++++ Pcap.c	2007-01-08 19:37:46.000000000 +0530
+@@ -54,6 +54,76 @@
+ }
+ 
+ static VALUE
++pcap_s_findalldevs(self)
++{
++   VALUE ret = rb_ary_new();
++   VALUE dhash;
++   VALUE ahash;
++   VALUE aarray;
++   pcap_if_t *devs, *devptr;
++   pcap_addr_t *addrp;
++
++   if(pcap_findalldevs(&devs, pcap_errbuf) == -1) {
++      rb_raise(ePcapError, "%s", pcap_errbuf);
++   }
++
++   devptr = devs;
++
++   while(devptr) {
++      dhash = rb_hash_new();
++
++      if(devptr->name)
++         rb_hash_aset(dhash, rb_str_new2("name"), rb_str_new2(devptr->name));
++
++      if(devptr->description)
++         rb_hash_aset(dhash, rb_str_new2("description"), rb_str_new2(devptr->description));
++
++      if(devptr->flags & PCAP_IF_LOOPBACK)
++         rb_hash_aset(dhash, rb_str_new2("loopback"), Qtrue);
++      else
++         rb_hash_aset(dhash, rb_str_new2("loopback"), Qfalse);
++      
++      addrp = devptr->addresses;
++      aarray = rb_ary_new();
++     
++      /* TODO: dirty */
++      if(addrp)
++         addrp = addrp->next;
++
++      while(addrp) {
++         ahash = rb_hash_new();
++         
++         if(addrp->addr)
++            rb_hash_aset(ahash, rb_str_new2("addr"), 
++               rb_str_new2(inet_ntoa(((struct sockaddr_in *)addrp->addr)->sin_addr)));
++
++         if(addrp->netmask)   
++            rb_hash_aset(ahash, rb_str_new2("netmask"), 
++               rb_str_new2(inet_ntoa(((struct sockaddr_in *)addrp->netmask)->sin_addr)));
++
++         if(addrp->broadaddr)
++            rb_hash_aset(ahash, rb_str_new2("broadaddr"), 
++               rb_str_new2(inet_ntoa(((struct sockaddr_in *)addrp->broadaddr)->sin_addr)));
++
++         if(addrp->dstaddr)
++            rb_hash_aset(ahash, rb_str_new2("dstaddr"), 
++               rb_str_new2(inet_ntoa(((struct sockaddr_in *)addrp->dstaddr)->sin_addr)));
++         
++         rb_ary_push(aarray, ahash);
++         addrp = addrp->next;
++      }
++
++      rb_hash_aset(dhash, rb_str_new2("addresses"), aarray);
++      rb_ary_push(ret, dhash);
++      
++      devptr = devptr->next;
++   }
++
++   pcap_freealldevs(devs);
++   return ret;
++}
++
++static VALUE
+ pcap_s_lookupnet(self, dev)
+     VALUE self;
+     VALUE dev;
+@@ -723,6 +793,7 @@
+     /* define module Pcap */
+     mPcap = rb_define_module("Pcap");
+     rb_define_module_function(mPcap, "lookupdev", pcap_s_lookupdev, 0);
++    rb_define_module_function(mPcap, "findalldevs", pcap_s_findalldevs, 0);
+     rb_define_module_function(mPcap, "lookupnet", pcap_s_lookupnet, 1);
+     rb_global_variable(&rbpcap_convert);
+     rb_define_singleton_method(mPcap, "convert?", pcap_s_convert, 0);

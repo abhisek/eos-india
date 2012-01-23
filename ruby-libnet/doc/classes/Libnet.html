@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Libnet</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Libnet</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/ruby-libnet_c.html">
+                ruby-libnet.c
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+module main
+</p>
+<p>
+SVN: <a
+href="http://rubyforge.org/viewvc?root=ruby-libnet">rubyforge.org/viewvc?root=ruby-libnet</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000012">auto_build_arp</a>&nbsp;&nbsp;
+      <a href="#M000010">auto_build_ethernet</a>&nbsp;&nbsp;
+      <a href="#M000014">auto_build_ipv4</a>&nbsp;&nbsp;
+      <a href="#M000011">build_arp</a>&nbsp;&nbsp;
+      <a href="#M000009">build_ethernet</a>&nbsp;&nbsp;
+      <a href="#M000019">build_icmpv4_echo</a>&nbsp;&nbsp;
+      <a href="#M000020">build_icmpv4_mask</a>&nbsp;&nbsp;
+      <a href="#M000022">build_icmpv4_redirect</a>&nbsp;&nbsp;
+      <a href="#M000023">build_icmpv4_timeexceed</a>&nbsp;&nbsp;
+      <a href="#M000024">build_icmpv4_timestamp</a>&nbsp;&nbsp;
+      <a href="#M000021">build_icmpv4_unreach</a>&nbsp;&nbsp;
+      <a href="#M000013">build_ipv4</a>&nbsp;&nbsp;
+      <a href="#M000015">build_ipv4_options</a>&nbsp;&nbsp;
+      <a href="#M000016">build_tcp</a>&nbsp;&nbsp;
+      <a href="#M000017">build_tcp_options</a>&nbsp;&nbsp;
+      <a href="#M000018">build_udp</a>&nbsp;&nbsp;
+      <a href="#M000003">clear_packet</a>&nbsp;&nbsp;
+      <a href="#M000002">deinit</a>&nbsp;&nbsp;
+      <a href="#M000004">getdevice</a>&nbsp;&nbsp;
+      <a href="#M000007">geterror</a>&nbsp;&nbsp;
+      <a href="#M000005">gethwaddr</a>&nbsp;&nbsp;
+      <a href="#M000006">getip</a>&nbsp;&nbsp;
+      <a href="#M000008">hex_aton</a>&nbsp;&nbsp;
+      <a href="#M000001">new</a>&nbsp;&nbsp;
+      <a href="#M000026">stats</a>&nbsp;&nbsp;
+      <a href="#M000025">write</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_LINK</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_LINK)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+constants for libnet injection type
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_LINK_ADV</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_LINK_ADV)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_RAW4</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_RAW4)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_RAW4_ADV</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_RAW4_ADV)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_RAW6</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_RAW6)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIBNET_RAW6_ADV</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(LIBNET_RAW6_ADV)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000001.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(...)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+initialize method for <a href="Libnet.html">Libnet</a> class returns a <a
+href="Libnet.html#M000001">new</a> libnet handle
+</p>
+<p>
+NOTE:
+</p>
+<pre>
+   Most libnet proto-header definitions which are defined
+   in libet-headers.h in libnet source is available
+   as constants inside the Libnet class.
+</pre>
+<ul>
+<li>@param1 (optional) Injection type (default: Libnet::LIBNET_LINK)
+
+</li>
+<li>@param2 (options) device (default: NULL, libnet autodetects)
+
+<p>
+For example to access LIBNET_BGP4_HEADER_H just do
+Libnet::LIBNET_BGP4_HEADER_H
+</p>
+</li>
+</ul>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000012.html');return false;">
+          <span class="method-name">auto_build_arp</span><span class="method-args">(p1, p2, p3, p4, p5)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Autouilds an Address Resolution Protocol (ARP) header. Depending on the op
+value, the function builds one of several different types of RFC 826 or RFC
+903 RARP packets.
+</p>
+<ul>
+<li>@param op ARP operation type
+
+</li>
+<li>@param sha sender&#8216;s hardware address (binary string)
+
+</li>
+<li>@param spa sender&#8216;s protocol address (binary string) (network order)
+
+</li>
+<li>@param tha target hardware address (binary string)
+
+</li>
+<li>@param tpa targer protocol address (binary string) (network order)
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000010.html');return false;">
+          <span class="method-name">auto_build_ethernet</span><span class="method-args">(p1, p2)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+builds a libnet header automatically and updates the internal libnet handle
+</p>
+<p>
+returns the libnet ptag for pblock used
+</p>
+<p>
+NOTE:
+</p>
+<pre>
+    *  Libnet ptags are how we identify specific protocol blocks inside the
+    *  list.
+
+    *  typedef int32_t libnet_ptag_t;
+    *  #define LIBNET_PTAG_INITIALIZER         0
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000014.html');return false;">
+          <span class="method-name">auto_build_ipv4</span><span class="method-args">(p1, p2, p3)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Autobuilds a version 4 Internet Protocol (IP) header. The function is
+useful * to build an IP header quickly when you do not need a granular
+level of control. The function takes the same len, prot, and dst arguments
+as libnet_build_ipv4(). The function does not accept a ptag argument, but
+it does return a ptag. In other words, you can use it to build a <a
+href="Libnet.html#M000001">new</a> IP header but not to modify an existing
+one.
+</p>
+<ul>
+<li>@param len total length of the IP packet including all subsequent data
+
+</li>
+<li>@param prot upper layer protocol
+
+</li>
+<li>@param dst destination IPv4 address (string dotted decimal)
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000011.html');return false;">
+          <span class="method-name">build_arp</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>@param hrd hardware address format (int)
+
+</li>
+<li>@param pro protocol address format (int)
+
+</li>
+<li>@param hln hardware address length (int)
+
+</li>
+<li>@param pln protocol address length (int)
+
+</li>
+<li>@param op ARP operation type (int)
+
+</li>
+<li>@param sha sender&#8216;s hardware address (binary string)
+
+</li>
+<li>@param spa sender&#8216;s protocol address (binary string) (network order)
+
+</li>
+<li>@param tha target hardware address (binary string)
+
+</li>
+<li>@param tpa targer protocol address (binary string) (network order)
+
+</li>
+<li>@param payload optional payload or NULL (string)
+
+</li>
+<li>@param payload_s payload length or 0 (int)
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000009.html');return false;">
+          <span class="method-name">build_ethernet</span><span class="method-args">(p1, p2, p3, p4, p5, p6)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+builds a libnet header and updates the internal libnet handle
+</p>
+<p>
+returns the ptag for the libnet pblock used
+</p>
+<p>
+NOTE:
+</p>
+<pre>
+    *  Libnet ptags are how we identify specific protocol blocks inside the
+    *  list.
+
+    *  typedef int32_t libnet_ptag_t;
+    *  #define LIBNET_PTAG_INITIALIZER         0
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000019.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000019.html');return false;">
+          <span class="method-name">build_icmpv4_echo</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP)
+echo request/reply header
+</p>
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_ECHOREPLY or ICMP_ECHO)
+
+</li>
+<li>@param code code of ICMP packet (should be 0)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param id identification number
+
+</li>
+<li>@param seq packet sequence number
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000020.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000020.html');return false;">
+          <span class="method-name">build_icmpv4_mask</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8, p9)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP) IP
+netmask request/reply header.
+
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_MASKREQ or ICMP_MASKREPLY)
+
+</li>
+<li>@param code code of ICMP packet (should be 0)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param id identification number
+
+</li>
+<li>@param seq packet sequence number
+
+</li>
+<li>@param mask subnet mask (dotted decimal string)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000022.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000022.html');return false;">
+          <span class="method-name">build_icmpv4_redirect</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an IP version 4 RFC 792 Internet Message Control Protocol (ICMP)
+redirect header. The IP header that caused the error message should be
+built by a previous call to libnet_build_ipv4().
+</p>
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_REDIRECT)
+
+</li>
+<li>@param code code of ICMP packet (should be one of the four redirect codes)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param gateway (dotted decimal IPv4 address string)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000023.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000023.html');return false;">
+          <span class="method-name">build_icmpv4_timeexceed</span><span class="method-args">(p1, p2, p3, p4, p5, p6)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP)
+time exceeded header. The IP header that caused the error message should be
+built by a previous call to libnet_build_ipv4().
+</p>
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_TIMXCEED)
+
+</li>
+<li>@param code code of ICMP packet (ICMP_TIMXCEED_INTRANS /
+ICMP_TIMXCEED_REASS)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000024.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000024.html');return false;">
+          <span class="method-name">build_icmpv4_timestamp</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP)
+timestamp request/reply header.
+</p>
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_TSTAMP or ICMP_TSTAMPREPLY)
+
+</li>
+<li>@param code code of ICMP packet (should be 0)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param id identification number
+
+</li>
+<li>@param seq sequence number
+
+</li>
+<li>@param otime originate timestamp (int32)
+
+</li>
+<li>@param rtime receive timestamp (int32)
+
+</li>
+<li>@param ttime transmit timestamp (int32)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param l pointer to a libnet context
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000021.html');return false;">
+          <span class="method-name">build_icmpv4_unreach</span><span class="method-args">(p1, p2, p3, p4, p5, p6)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP)
+unreachable header. The IP header that caused the error message should be
+built by a previous call to libnet_build_ipv4().
+</p>
+<ul>
+<li>@param type type of ICMP packet (should be ICMP_UNREACH)
+
+</li>
+<li>@param code code of ICMP packet (should be one of the 16 unreachable codes)
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000013.html');return false;">
+          <span class="method-name">build_ipv4</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds a version 4 RFC 791 Internet Protocol (IP) header.
+</p>
+<ul>
+<li>@param len total length of the IP packet including all subsequent data
+
+</li>
+<li>@param tos type of service bits
+
+</li>
+<li>@param id IP identification number
+
+</li>
+<li>@param frag fragmentation bits and offset
+
+</li>
+<li>@param ttl time to live in the network
+
+</li>
+<li>@param prot upper layer protocol
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param src source IPv4 address (string, eg. &quot;192.168.0.1&quot;)
+
+</li>
+<li>@param dst destination IPv4 address (string, eg. &quot;192.168.0.2&quot;)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000015.html');return false;">
+          <span class="method-name">build_ipv4_options</span><span class="method-args">(p1, p2, p3)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an version 4 Internet Protocol (IP) options header. The function
+expects options to be a valid IP options string of size options_s, no
+larger than 40 bytes (the maximum size of an options string). The function
+checks to make sure that the preceding header is an IPv4 header and that
+the options string would not result in a packet larger than 65,535 bytes
+(IPMAXPACKET). The function counts up the number of 32-bit words in the
+options string and adjusts the IP header length value as necessary.
+</p>
+<ul>
+<li>@param options byte string of IP options
+
+</li>
+<li>@param options_s length of options string
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000016.html');return false;">
+          <span class="method-name">build_tcp</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>@param sp source port
+
+</li>
+<li>@param dp destination port
+
+</li>
+<li>@param seq sequence number
+
+</li>
+<li>@param ack acknowledgement number
+
+</li>
+<li>@param control control flags
+
+</li>
+<li>@param win window size
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param urg urgent pointer
+
+</li>
+<li>@parama len total length of the TCP packet (for checksum calculation)
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000017.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000017.html');return false;">
+          <span class="method-name">build_tcp_options</span><span class="method-args">(p1, p2, p3)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an RFC 793 Transmission Control Protocol (TCP) options header.
+</p>
+<pre>
+ The function expects options to be a valid TCP options string of size
+ options_s, which is no larger than 40 bytes (the maximum size of an
+ options string). The function checks to ensure that the packet consists of
+ a TCP header preceded by an IPv4 header, and that the addition of the
+ options string would not result in a packet larger than 65,535 bytes
+ (IPMAXPACKET). The function counts up the number of 32-bit words in the
+ options string and adjusts the TCP header length value as necessary.
+
+ * @param options byte string of TCP options
+ * @param options_s length of options string
+ * @param ptag protocol tag to modify an existing header, 0 to build a new one
+ * @return protocol tag value on success, -1 on error
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000018.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000018.html');return false;">
+          <span class="method-name">build_udp</span><span class="method-args">(p1, p2, p3, p4, p5, p6, p7)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Builds an RFC 768 User Datagram Protocol (UDP) header.
+</p>
+<ul>
+<li>@param sp source port
+
+</li>
+<li>@param dp destination port
+
+</li>
+<li>@param len total length of the UDP packet
+
+</li>
+<li>@param sum checksum (0 for libnet to autofill)
+
+</li>
+<li>@param payload optional payload or NULL
+
+</li>
+<li>@param payload_s payload length or 0
+
+</li>
+<li>@param ptag protocol tag to modify an existing header, 0 to build a <a
+href="Libnet.html#M000001">new</a> one
+
+</li>
+<li>@return protocol tag value on success, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000003.html');return false;">
+          <span class="method-name">clear_packet</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+clears the libnet pblocks from the libnet context
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000002.html');return false;">
+          <span class="method-name">deinit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+destroy the libnet handle and close it
+</p>
+<p>
+SECURITY NOTE:
+</p>
+<pre>
+   If libnet_handle#deinit called twice then double free condition will occur.
+   I cant find a way to handle this here since I am treating libnet handle as a
+   data object for wrapping it inside the class. libnet authors should have avoided
+   dangling pointers after a call to libnet_destroy()
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000004.html');return false;">
+          <span class="method-name">getdevice</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the canonical name of the device used for packet injection
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000007.html');return false;">
+          <span class="method-name">geterror</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the last error set inside libnet
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000005.html');return false;">
+          <span class="method-name">gethwaddr</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the MAC address for the device libnet was initialized with. If
+libnet was initialized without a device the function will attempt to find
+one. If the function fails and returns NULL a call to libnet_geterror()
+will tell you why.
+</p>
+<ul>
+<li>@param l pointer to a libnet context
+
+</li>
+<li>@return a pointer to the MAC address or NULL
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000006.html');return false;">
+          <span class="method-name">getip</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the IP address of the interfaced used for packet injection
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000008.html');return false;">
+          <span class="method-name">hex_aton</span><span class="method-args">(p1)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes a colon separated hexidecimal address (from the command line) and
+returns a bytestring suitable for use in a libnet_build function. Note this
+function performs an implicit malloc and the return value should be freed
+after its use.
+</p>
+<ul>
+<li>@param s the string to be parsed
+
+</li>
+<li>@return a byte string or NULL on failure
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000026.html');return false;">
+          <span class="method-name">stats</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+call-seq:
+</p>
+<pre>
+   l.stats           -&gt; [packets_sent, packet_errors, bytes_written]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="Libnet.src/M000025.html" target="Code" class="method-signature"
+            onclick="popupCode('Libnet.src/M000025.html');return false;">
+          <span class="method-name">write</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Writes a prebuilt packet to the network. The function assumes that l was
+previously initialized (via a call to libnet_init()) and that a previously
+constructed packet has been built inside this context (via one or more
+calls to the libnet_build* family of functions) and is ready to go.
+Depending on how libnet was initialized, the function will <a
+href="Libnet.html#M000025">write</a> the packet to the wire either via the
+raw or link layer interface. The function will also bump up the internal
+libnet stat counters which are retrievable via libnet_stats().
+</p>
+<ul>
+<li>@return the number of bytes written, -1 on error
+
+</li>
+</ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

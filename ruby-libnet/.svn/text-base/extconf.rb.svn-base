@@ -1,0 +1,8 @@
+require 'mkmf'
+
+if have_library('net') and have_header('libnet.h') 
+   create_makefile('libnet')
+else
+   puts "Dependency failed"
+end
+   

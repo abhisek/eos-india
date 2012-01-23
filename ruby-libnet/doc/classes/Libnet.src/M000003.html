@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>clear_packet (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * clears the libnet pblocks from the libnet context
+ */
+
+static VALUE rb_libnet_clear_packet(VALUE self)
+{
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   DEBUG_PRINT(&quot;libnet_clear_packet&quot;);
+
+   if(lctx)
+      libnet_clear_packet(lctx);
+   
+   return Qnil;
+}</pre>
+</body>
+</html>

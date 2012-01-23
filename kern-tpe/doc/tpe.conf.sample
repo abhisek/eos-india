@@ -1,0 +1,24 @@
+# Sample TPE configuration file entries
+
+# allow - Add to trust list
+# deny - Remove from trust list
+# set - Set some configuration option
+
+# inclusive mode
+allow group 100				# Set trust on Group
+allow user 1002				# Set trust on User
+allow file /var/www/cgi-bin/web.cgi	# Set trust on file
+allow dir /var/www/cgi-bin		# Set trust on directory and its sub-directories
+deny all		# Default
+set trusted_path	# Trusted user owned paths are trusted
+set strict_mode		# Turn on strict mode, no more command processing untill reload
+
+# exclusive mode
+deny group 100				# Unset trust on Group
+deny user 1002				# Unset trust on User
+deny file /var/www/cgi-bin/web.cgi	# Unset trust on file
+deny dir /var/www/cgi-bin		# Unset trust on directory and its sub-directories
+allow all		# Set trust on everybody except explicitly mentioned
+set trusted_path
+set strict_mode
+

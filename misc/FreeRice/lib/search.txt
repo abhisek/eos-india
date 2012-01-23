@@ -1,0 +1,160 @@
+
+
+
+dict.org- falciform
+
+
+
+
+
+
+
+The DICT Development Group
+
+
+
+    
+    
+	
+	Search for:
+	
+        
+        Search type:
+        
+        Return Definitions
+        Match headwords exactly
+        Match prefixes
+        Match substring occurring anywhere in a headword
+        Match suffixes
+        POSIX 1003.2 (modern) regular expressions
+        Old (basic) regular expressions
+        Match using SOUNDEX algorithm
+        Match headwords within Levenshtein distance one
+        Match separate words within headwords
+        
+	
+        Database:
+        
+        Any
+        First match
+        The Collaborative International Dictionary of English v.0.48
+        WordNet (r) 2.0
+        Moby Thesaurus II by Grady Ward, 1.0
+        Elements database 20001107
+        Virtual Entity of Relevant Acronyms (Version 1.9, June 2002)
+        Jargon File (4.3.1, 29 Jun 2001)
+        The Free On-line Dictionary of Computing (27 SEP 03)
+        Easton's 1897 Bible Dictionary
+        Hitchcock's Bible Names Dictionary (late 1800's)
+        Bouvier's Law Dictionary, Revised 6th Ed (1856)
+        THE DEVIL'S DICTIONARY ((C)1911 Released April 15 1993)
+        CIA World Factbook 2002
+        U.S. Gazetteer (1990)
+        U.S. Gazetteer Counties (2000)
+        U.S. Gazetteer Places (2000)
+        U.S. Gazetteer Zip Code Tabulation Areas (2000)
+        Stop default search here.
+        Africaan-German Freedict dictionary
+        Africaan-English Freedict Dictionary
+        English-Arabic Freedict Dictionary
+        Croatian-English Freedict Dictionary
+        Czech-English Freedict dictionary
+        Danish-English Freedict dictionary
+        German-English Freedict dictionary
+        German-French Freedict dictionary
+        German-Italian Freedict dictionary
+        German-Nederland Freedict dictionary
+        German-Portugese Freedict dictionary
+        English-Africaan Freedict Dictionary
+        English-Arabic FreeDict Dictionary
+        English-Croatian Freedict Dictionary
+        English-Czech fdicts/FreeDict Dictionary
+        English-German Freedict dictionary
+        English-French Freedict Dictionary
+        English-Hindi Freedict Dictionary
+        English-Hungarian Freedict Dictionary
+        English-Irish Freedict dictionary
+        English-Italian Freedict dictionary
+        English-Latin Freedict dictionary
+        English-Netherlands Freedict dictionary
+        English-Portugese Freedict dictionary
+        English-Romanian FreeDict dictionary
+        English-Russian Freedict dictionary
+        English-Spanish Freedict dictionary
+        English-Swahili xFried/FreeDict Dictionary
+        English-Swedish Freedict dictionary
+        English-Turkish FreeDict Dictionary
+        English-Welsh Freedict dictionary
+        French-German Freedict dictionary
+        French-English Freedict dictionary
+        French-Nederlands Freedict dictionary
+        English-Hindi Freedict Dictionary [reverse index]
+        Hungarian-English FreeDict Dictionary
+        Irish-English Freedict dictionary
+        Italian-German Freedict dictionary
+        Japanese-German Freedict dictionary
+        Khasi-German FreeDict Dictionary
+        Latin-German Freedict dictionary
+        Latin-English Freedict dictionary
+        Nederlands-German Freedict dictionary
+        Nederlands-English Freedict dictionary
+        Nederlands-French Freedict dictionary
+        Portugese-German Freedict dictionary
+        Portugese-English Freedict dictionary
+        Scottish-German Freedict dictionary
+        Serbo-Croat-English Freedict dictionary
+        Slovenian-English Freedict dictionary
+        Spanish-English Freedict dictionary
+        Swahili-English xFried/FreeDict Dictionary
+        Swedish-English Freedict dictionary
+        Turkish-German Freedict dictionary
+        Turkish-English Freedict dictionary
+        English Monolingual Dictionaries
+        Translating Dictionaries
+        All Dictionaries (English-Only and Translating)
+        Webster's Revised Unabridged Dictionary (1913)
+        The CIA World Factbook (1995)
+        
+	
+        
+        
+	
+	Database copyright information
+	
+	Server information
+        
+        Resources, links, and other information (old home page)
+        
+        Notes on Recent Changes (last updated March 2005)
+    
+
+
+2 definitions found
+ for falciform
+From The Collaborative International Dictionary of English v.0.48 :
+
+
+  Falciform \Fal"ci*form\, a. [L. falx, falcis, a sickle + -form:
+     cf. F. falciforme.]
+     Having the shape of a scithe or sickle; resembling a reaping
+     hook; as, the falciform ligatment of the liver.
+     [1913 Webster]
+
+From WordNet (r) 2.0 :
+
+
+  falciform
+       adj : curved like a sickle; "a falcate leaf"; "falcate claws";
+             "the falcate moon" [syn: falcate, sickle-shaped]
+
+
+    
+          
+    
+	Questions or comments about this site?
+	Contact webmaster@dict.org
+	
+    
+
+
+

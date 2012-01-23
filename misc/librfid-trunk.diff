@@ -1,0 +1,25 @@
+This bug is triggered only if:
+1. librfid is compiled with -DFORITY_SOURCE
+2. GCC does *not* optimize out memcpy() with __built-in
+
+when secure version of memcpy is used, __builtin_object_size is used to find the
+size of the destination object where data is to be copied. In case of librfid there
+a 1 byte buffer overflow which is caught by __mempcy_chk and thus abort() is triggered.
+
+Under normal circumstances, there is no segfault/abort because the 1 byte overflow doesnt
+really offend any memory protection and is restricted to valid allocated memory in local stack
+only.
+
+Index: utils/mifare-tool.c
+===================================================================
+--- utils/mifare-tool.c	(revision 1987)
++++ utils/mifare-tool.c	(working copy)
+@@ -98,7 +98,7 @@
+ 	program_name = basename(argv[0]);
+ 
+ 	memcpy(key, MIFARE_CL_KEYA_DEFAULT_INFINEON,
+-	       sizeof(MIFARE_CL_KEYA_DEFAULT_INFINEON));
++	       sizeof(MIFARE_CL_KEYA_DEFAULT_INFINEON) - 1);
+ 
+ 	printf("%s - (C) 2006 by Harald Welte\n"
+ 	       "This program is Free Software and has "

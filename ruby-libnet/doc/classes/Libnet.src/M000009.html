@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_ethernet (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * builds a libnet header and updates the internal libnet handle
+ *
+ * returns the ptag for the libnet pblock used
+ *
+ * NOTE:
+ * 
+ *     *  Libnet ptags are how we identify specific protocol blocks inside the
+ *     *  list.
+ *  
+ *     *  typedef int32_t libnet_ptag_t;
+ *     *  #define LIBNET_PTAG_INITIALIZER         0
+ *
+ */
+
+static VALUE rb_libnet_build_ethernet(VALUE self,
+                              VALUE dst,
+                              VALUE src,
+                              VALUE type,
+                              VALUE payload,
+                              VALUE payload_size,
+                              VALUE ptag)
+{
+   libnet_ptag_t tag;
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+            rb_iv_get(self, &quot;@handle&quot;),
+            libnet_t,
+            lctx);
+
+   DEBUG_PRINT(&quot;libnet_build_ethernet()&quot;);
+
+   tag = libnet_build_ethernet(
+            StringValuePtr(dst),
+            StringValuePtr(src),
+            (u_int16_t)NUM2INT(type),
+            StringValuePtr(payload),
+            NUM2INT(payload_size),
+            lctx,
+            (libnet_ptag_t)(ptag == Qnil ? 0 : NUM2INT(ptag))
+         );
+
+
+   return INT2FIX(tag);   /* -1 would cause a bug? */
+}</pre>
+</body>
+</html>

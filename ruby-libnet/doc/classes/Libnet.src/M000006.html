@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>getip (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * returns the IP address of the interfaced used for
+ * packet injection
+ */
+static VALUE rb_libnet_getip(VALUE self)
+{
+   libnet_t *lctx = NULL;
+   unsigned long addr;
+   char *iptxt;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   addr = libnet_get_ipaddr4(lctx);
+   iptxt = libnet_addr2name4(addr, LIBNET_DONT_RESOLVE);
+
+   return (iptxt ? rb_str_new2(iptxt) : Qnil);
+}</pre>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>gethwaddr (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * Returns the MAC address for the device libnet was initialized with. If
+ * libnet was initialized without a device the function will attempt to find
+ * one. If the function fails and returns NULL a call to libnet_geterror() will
+ * tell you why.
+ *
+ * * @param l pointer to a libnet context
+ * * @return a pointer to the MAC address or NULL
+*/
+static VALUE rb_libnet_gethwaddr(VALUE self)
+{
+   libnet_t *lctx = NULL;
+   struct libnet_ether_addr *eth = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   if(lctx)
+      eth = libnet_get_hwaddr(lctx);
+
+   if(eth)
+      return rb_str_new(eth-&gt;ether_addr_octet, 6);
+
+   return Qnil;
+}</pre>
+</body>
+</html>

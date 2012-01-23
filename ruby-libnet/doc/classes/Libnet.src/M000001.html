@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * initialize method for Libnet class
+ * returns a new libnet handle
+ *
+ * NOTE:
+ *    Most libnet proto-header definitions which are defined
+ *    in libet-headers.h in libnet source is available
+ *    as constants inside the Libnet class.
+ *
+ * * @param1 (optional) Injection type (default: Libnet::LIBNET_LINK)
+ * * @param2 (options) device (default: NULL, libnet autodetects)
+ *
+ *   For example to access LIBNET_BGP4_HEADER_H
+ *   just do Libnet::LIBNET_BGP4_HEADER_H
+ * 
+ */
+static VALUE rb_libnet_init(int argc, VALUE *argv, VALUE self)
+{
+   libnet_t *lctx;
+   char errbuf[LIBNET_ERRBUF_SIZE];
+   VALUE inj_type = INT2FIX(LIBNET_LINK);
+   VALUE dev = Qnil;
+   VALUE wrap;
+   
+   if(argc &gt; 0)
+      rb_scan_args(argc, argv, &quot;02&quot;, &amp;inj_type, &amp;dev);
+
+   DEBUG_PRINT(&quot;initialize(type = %d, dev = %s)&quot;, 
+         NUM2INT(inj_type), 
+         dev == Qnil ? &quot;NULL&quot; : StringValuePtr(dev));
+
+   lctx = libnet_init(NUM2INT(inj_type), dev == Qnil ? NULL : StringValuePtr(dev), errbuf);
+   
+   if(lctx == NULL) {
+      rb_raise(rb_eRuntimeError, errbuf);
+      return Qnil;
+   }
+
+   wrap = Data_Wrap_Struct(rb_cObject, NULL, NULL, lctx);
+   rb_iv_set(self, &quot;@handle&quot;, wrap);
+
+   return self;
+}</pre>
+</body>
+</html>

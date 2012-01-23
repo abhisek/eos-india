@@ -1,0 +1,171 @@
+ 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="code/freerice.css" type="text/css" media="all" charset="utf-8" />
+	<!--[if lt IE 7]><link rel="stylesheet" href="code/ie6.css" type="text/css" charset="utf-8" /><![endif]-->
+	<script language="JavaScript" type="text/javascript" src="code/main.js"></script>  
+	<script language="JavaScript" type="text/javascript" src="code/audio.js"></script> 
+	<title></title>
+	<meta name="description" content="Give free rice to hungry people by playing a simple word game." />
+	<meta name="keywords" content="free, rice, hungry, people, world, international, hunger, poverty, English, language, vocabulary, word, game, teach, teachers, teaching, learn, study, students, education, school, charity, charitable, donation" />
+	<meta name="robots" content="all" />
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+
+
+<body id="index" onload="preload(2); audio.Mp3.go()">
+
+<form id="form1" name="form1" action="index.php" method="POST" autocomplete="OFF" />  
+<input type=hidden name="SELECTED" />
+<input type=hidden name="PAST" value="Y01834proh" />
+<input type=hidden name="INFO" value=1050627948460000200000020000250001250000000002000000001010 />
+<input type=hidden name="INFO2" value=12133591401213359146 />
+<input type=hidden name="INFO3" value="unflinching              surplus                  resolute                 concealed                fast                     " />
+
+
+
+
+<div id="wrapper">
+
+
+<div id="top">
+  <h1 class="imageText">Free Rice - For Each Vocabulary Word You Get Right, We Donate Free Rice through the United Nations World Food Program to Help End World Hunger</h1>   
+  <img id="logoImg" src="images/freeRiceLogo.gif" alt="" width="150" height="128" />
+  <a id="headerLink" href="http://www.wfp.org"></a>
+
+  <ul id="menuTop">
+  <li id="topHome" class="home"><a href="index.php">home</a></li>
+  <li id="topFAQ" class="faq"><a href="faq.html">faq</a></li>
+  <li id="topTotals" class="totals"><a href="totals.php">totals</a></li>
+  <li id="topOptions" class="options"><a href="options.php">options</a></li>
+  <li id="topPress" class="press"><a href="press.html">press</a></li>
+  <li id="topContact" class="contact"><a href="contact.html">contact</a></li>
+  <li id="topAbout" class="about"><a href="about.html">about</a></li>
+</ul>
+</div><!-- end of Top -->
+
+
+
+
+ 
+
+
+<div class="contentWrap contentSecond"> 
+ 
+  <div class="topPatch"></div>
+
+  <div id="contentSecLeft">
+
+		
+    <div id="contentSecLeftTop">      
+     
+	  <div id="correct">CORRECT!</div><div id="correctDef">prohibition = ban</div>    
+	</div> <!-- end contentSecLeftTop-->
+
+    <div id="contentSecLeftBot" style="position: relative">
+	
+	  <div style="position: absolute; top: 20px; left: 435px"> 
+	    		<a href="http://www.freerice.com/getmp3.php?mp3=40767.mp3"><img border="0" src="images/audioIcon2.gif" alt="Pronounce" /></a>
+		      </div>  
+
+      <div class="wordSelection">
+        <ol> 
+        <li><strong>unflinching</strong> means:</li>   
+        <li><noscript><input type="submit" name="SELECTED" value=" 1 "> </noscript><a href="javascript: submitForm('1')">surplus</a></li>
+        <li><noscript><input type="submit" name="SELECTED" value=" 2 "> </noscript><a href="javascript: submitForm('2')">resolute</a></li>
+        <li><noscript><input type="submit" name="SELECTED" value=" 3 "> </noscript><a href="javascript: submitForm('3')">concealed</a></li>
+        <li><noscript><input type="submit" name="SELECTED" value=" 4 "> </noscript><a href="javascript: submitForm('4')">fast</a></li>
+       </ol>
+      </div> <!-- end wordSelection-->
+ 
+      <p class="vocabLevel">VOCAB LEVEL &#8213;</p> 
+
+    </div> <!-- end contentSecLeftBot-->
+  
+   	
+  </div> <!-- end contentSecLeft-->
+
+  <div id="contentSecRight">
+ 
+         
+    	
+    <div id="ricePicture">
+	  
+       <img src="images/rice20.gif" alt="" height="170" width="170" />	  
+	  
+    </div>
+
+	   	   <p id="donatedAmount">You have just donated 20 grains of rice.<br />Please try another word.</p>
+    	
+  </div> <!-- end contentSecRight-->
+
+</div><!-- end contentWrap contentSecond-->
+
+<div id="sponsorList">
+ 
+  <div id="leaderboard"> 
+			
+	 
+	  <a href="http://www.unilever.com/ourvalues/nutritionhygienepersonalcare/nutrition/workingwithothers/wfp/?linkid=navigation"> <IMG border="0" alt="Unilever" src="sponsors/UnileverVitality.jpg"></a>
+		   
+			
+  </div>
+  
+  <p id="adsPayFor">Sponsors pay for<br />your donated rice.</p>
+
+
+</div> <!-- end sponsorList -->
+
+
+
+
+<div id="footer">
+  <ul>
+  <li class="home"><a href="index.php">home</a></li>
+  <li class="faq"><a href="faq.html">faq</a></li>
+  <li class="totals"><a href="totals.php">totals</a></li>
+  <li class="options"><a href="options.php">options</a></li>
+  <li class="press"><a href="press.html">press</a></li>
+  <li class="about"><a href="about.html">about</a></li>
+  <li class="privacy"><a href="privacy.html">privacy</a></li>
+  <li class="banners"><a href="banners.html">banners</a></li>
+  <li class="contact"><a href="contact.html">contact</a></li>
+  </ul>
+  <p>Learn Free Vocabulary & Give Free Rice</p>
+  <p>©2007-2008 FreeRice. All Rights Reserved.</p>
+</div><!-- end footer-->
+
+
+</div><!-- end wrapper-->
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

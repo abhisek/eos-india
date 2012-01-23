@@ -1,0 +1,47 @@
+root@blackspice:/opt/rsync-3.0.1# ps -aux | grep  rsync
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+root     23562  0.0  0.0   2396   536 ?        Ss   12:38   0:00 ./bin/rsync --daemon
+root     23566  0.0  0.0   2976   728 pts/2    R+   12:38   0:00 grep rsync
+root@blackspice:/opt/rsync-3.0.1# ps -aux | grep  rsync
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+root     23562  0.0  0.0   2396   540 ?        Ss   12:38   0:00 ./bin/rsync --daemon
+root     23571  0.0  0.0   2440   728 ?        S    12:38   0:00 ./bin/rsync --daemon
+root     23573  0.0  0.0   2972   728 pts/2    R+   12:38   0:00 grep rsync
+root@blackspice:/opt/rsync-3.0.1# gdb
+GNU gdb 6.6-debian
+Copyright (C) 2006 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i486-linux-gnu".
+(gdb) at 23571
+Attaching to process 23571
+Reading symbols from /opt/rsync-3.0.1/bin/rsync...done.
+Using host libthread_db library "/lib/tls/i686/cmov/libthread_db.so.1".
+Reading symbols from /lib/tls/i686/cmov/libc.so.6...done.
+Loaded symbols for /lib/tls/i686/cmov/libc.so.6
+Reading symbols from /lib/ld-linux.so.2...done.
+Loaded symbols for /lib/ld-linux.so.2
+Reading symbols from /lib/tls/i686/cmov/libnss_files.so.2...done.
+Loaded symbols for /lib/tls/i686/cmov/libnss_files.so.2
+0xffffe410 in __kernel_vsyscall ()
+(gdb) source ./gdb
+Breakpoint 1 at 0x8080bd3: file xattrs.c, line 583.
+Breakpoint 2 at 0xb7e48106
+(gdb) c
+Continuing.
+
+Breakpoint 1, receive_xattr (file=0xb7d83fe4, f=6) at xattrs.c:583
+583             int need_sort = 0;
+(gdb) c
+Continuing.
+
+Breakpoint 2, 0xb7e48106 in abort () from /lib/tls/i686/cmov/libc.so.6
+(gdb) c
+Continuing.
+
+Program received signal SIGABRT, Aborted.
+0xffffe410 in __kernel_vsyscall ()
+(gdb) 
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stats (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq:
+ *    l.stats           -&gt; [packets_sent, packet_errors, bytes_written]
+ */
+static VALUE rb_libnet_stats(VALUE self)
+{
+   VALUE arr_obj;
+   struct libnet_stats ls;
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+   
+   if(lctx == NULL) 
+      return Qnil;
+
+   libnet_stats(lctx, &amp;ls);
+
+   arr_obj = rb_ary_new();
+   
+   rb_ary_push(arr_obj, INT2NUM(ls.packets_sent));
+   rb_ary_push(arr_obj, INT2NUM(ls.packet_errors));
+   rb_ary_push(arr_obj, INT2NUM(ls.bytes_written));
+
+   return arr_obj;
+}</pre>
+</body>
+</html>

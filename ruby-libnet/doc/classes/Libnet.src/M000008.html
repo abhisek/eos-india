@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>hex_aton (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * Takes a colon separated hexidecimal address (from the command line) and
+ * returns a bytestring suitable for use in a libnet_build function. Note this
+ * function performs an implicit malloc and the return value should be freed
+ * after its use.
+ *
+ * * @param s the string to be parsed
+ * * @return a byte string or NULL on failure
+ *
+ */
+static VALUE rb_libnet_hex_aton(VALUE self, VALUE s)
+{
+   char *ptr;
+   int len;
+   VALUE rs;
+
+   ptr = libnet_hex_aton(RSTRING(s)-&gt;ptr, &amp;len);
+   rs = rb_str_new(ptr, len);
+   free(ptr);
+   
+   return rs;
+}</pre>
+</body>
+</html>

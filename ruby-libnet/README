@@ -1,0 +1,45 @@
+* Introduction
+
+   ruby-libnet is a Ruby binding for libnet library written in C
+   programming language. 
+
+   libnet homepage: http://packetfactory.net/libnet/
+
+* Homepage
+   
+   http://ruby-libnet.rubyforge.org
+
+* Requirements
+   
+   Ruby (Tested on 1.8.x)
+
+* Source
+
+   svn checkout svn://rubyforge.org/var/svn/ruby-libnet
+
+* Compile
+   If ruby supports dynamic link of extension module on your OS,
+   following commands will install ruby-libnet:
+
+   ruby extconf.rb
+   make
+   make install
+
+* Usage
+
+   See the documentation under the directory 'doc'.
+   Directory 'tests' contains some simple scripts.
+
+* Bug Reports
+
+   Abhisek Datta <abhisek@rubyforge.org>
+
+You can redistribute it and/or modify it under the terms of
+the LGPL (GNU LESSER GENERAL PUBLIC LICENSE).  See COPYING file about LGPL.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  See the GPL for
+more details.
+
+

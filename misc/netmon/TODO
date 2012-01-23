@@ -1,0 +1,19 @@
+* Implement common bus for configuration parameter sharing [Done]
+* GTK based messaging
+* Decoder abstraction [Done]
+* Packet Analyzer abstraction
+* Decoders
+   * Ethernet [Done]
+   * ARP [Done]
+   * IP [Done]
+   * ICMP
+   * UDP
+   * TCP
+
+* Analyzers
+   * ARP Poisoner Detection
+
+* How to implement the module loader?
+* How to design a scalable and extensible decoding mechanism?
+* Pcap style filter
+* UI list disply on help

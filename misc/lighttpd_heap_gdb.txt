@@ -1,0 +1,46 @@
+http_request_parse (srv=0x8074008, con=0x80815c0) at request.c:968
+968                                             i++;
+(gdb) n
+969                                             first = i+1;
+(gdb) c
+Continuing.
+
+Breakpoint 1, http_request_parse (srv=0x8074008, con=0x80815c0) at request.c:723
+723                                                     if (!ds) {
+(gdb) n
+740                                                     buffer_append_string(ds->value, value);
+(gdb) s
+buffer_append_string (b=0x80aca98, s=0x80ac4ca "  PAAAAZZZZZ") at buffer.c:169
+169             if (!s || !b) return -1;
+(gdb) nn
+Undefined command: "nn".  Try "help".
+(gdb) n
+171             s_len = strlen(s);
+(gdb) n
+172             buffer_prepare_append(b, s_len + 1);
+(gdb) n
+173             if (b->used == 0)
+(gdb) n
+176             memcpy(b->ptr + b->used - 1, s, s_len + 1);
+(gdb) x/x b->ptr + b->used - 1
+0x807319d <_GLOBAL_OFFSET_TABLE_+173>:  0xa0b7e940
+(gdb) x/x 0xa0b7e940 + 3
+0xa0b7e943:     Cannot access memory at address 0xa0b7e943
+(gdb) x/x b->ptr + b->used - 1 + 3
+0x80731a0 <_GLOBAL_OFFSET_TABLE_+176>:  0xb7e3e5a0
+(gdb) c
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x41414141 in ?? ()
+(gdb) bt
+#0  0x41414141 in ?? ()
+#1  0x0805d7fe in buffer_prepare_copy (b=0x8081808, size=5) at buffer.c:85
+#2  0x0805d9af in buffer_copy_string (b=0x8081808, s=0x806d732 "http") at buffer.c:129
+#3  0x0805003f in http_response_prepare (srv=0x8074008, con=0x80815c0) at response.c:179
+#4  0x08053cdb in connection_state_machine (srv=0x8074008, con=0x80815c0) at connections.c:1400
+#5  0x0804f8b6 in main (argc=4, argv=0xbfb3eeb4) at server.c:1334
+(gdb) i r $eip
+eip            0x41414141       0x41414141
+(gdb)
+

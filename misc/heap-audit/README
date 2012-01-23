@@ -1,0 +1,15 @@
+   * Heaplib
+      * Malloc/Realloc/free logging
+      * research
+
+   * Auditing
+      * Uninitialized memory check
+      * Double Free check
+      * Dangling free check
+      * Dangling realloc check
+
+== Basic Framework ==
+
+heaplib should act as a preloaded library into the address space of the process to be audited. It should record all malloc/realloc/free information and support easy addition of checks for possible heap corruption related bugs.
+
+The basic modelling of this heap auditing framework is based on "stateful inspection" of memory allocation and program behaviour with dynamic memory management.

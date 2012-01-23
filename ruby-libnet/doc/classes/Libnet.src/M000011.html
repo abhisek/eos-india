@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_arp (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * * @param hrd hardware address format   (int)
+ * * @param pro protocol address format   (int)
+ * * @param hln hardware address length   (int)
+ * * @param pln protocol address length   (int)
+ * * @param op ARP operation type         (int)
+ * * @param sha sender's hardware address (binary string)
+ * * @param spa sender's protocol address (binary string) (network order)
+ * * @param tha target hardware address   (binary string)
+ * * @param tpa targer protocol address   (binary string) (network order)
+ * * @param payload optional payload or NULL (string)
+ * * @param payload_s payload length or 0 (int)
+ * * @param ptag protocol tag to modify an existing header, 0 to build a new one
+ * * @return protocol tag value on success, -1 on error
+ *
+ */ 
+
+static VALUE rb_libnet_build_arp(VALUE self,
+                              VALUE hw_t,
+                              VALUE proto_t,
+                              VALUE hw_size,
+                              VALUE proto_size,
+                              VALUE arp_op,
+                              VALUE src_haddr,
+                              VALUE src_paddr,
+                              VALUE dst_haddr,
+                              VALUE dst_paddr,
+                              VALUE payload,
+                              VALUE payload_s,
+                              VALUE tag)
+{
+   libnet_ptag_t p = -1;
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   DEBUG_PRINT(&quot;libnet_build_arp()&quot;);
+
+   if(lctx)
+      p = libnet_build_arp(
+                  (u_int16_t)NUM2INT(hw_t),
+                  (u_int16_t)NUM2INT(proto_t),
+                  (u_int8_t)NUM2INT(hw_size),
+                  (u_int8_t)NUM2INT(proto_size),
+                  (u_int16_t)NUM2INT(arp_op),
+                  StringValuePtr(src_haddr),
+                  StringValuePtr(src_paddr),
+                  StringValuePtr(dst_haddr),
+                  StringValuePtr(dst_paddr),
+                  (payload == Qnil ? NULL : StringValuePtr(payload)),
+                  (payload_s == Qnil ? 0 : NUM2INT(payload_s)),
+                  lctx,
+                  (libnet_ptag_t)(tag == Qnil ? 0 : NUM2INT(tag))
+         );
+
+   return INT2FIX(p);
+}</pre>
+</body>
+</html>

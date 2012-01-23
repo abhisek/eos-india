@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_icmpv4_unreach (Libnet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+  * Builds an IP version 4 RFC 792 Internet Control Message Protocol (ICMP)
+  * unreachable header. The IP header that caused the error message should be
+  * built by a previous call to libnet_build_ipv4().
+  *
+  * * @param type type of ICMP packet (should be ICMP_UNREACH)
+  * * @param code code of ICMP packet (should be one of the 16 unreachable codes)
+  * * @param sum checksum (0 for libnet to autofill)
+  * * @param payload optional payload or NULL
+  * * @param payload_s payload length or 0
+  * * @param ptag protocol tag to modify an existing header, 0 to build a new one
+ 
+  * * @return protocol tag value on success, -1 on error
+  *
+ */
+static VALUE rb_libnet_build_icmpv4_unreach(VALUE self,
+                                          VALUE type,
+                                          VALUE code,
+                                          VALUE csum,
+                                          VALUE payload,
+                                          VALUE payload_s,
+                                          VALUE tag)
+{
+   libnet_ptag_t p = -1;
+   libnet_t *lctx = NULL;
+
+   Data_Get_Struct(
+         rb_iv_get(self, &quot;@handle&quot;),
+         libnet_t,
+         lctx);
+
+   DEBUG_PRINT(&quot;libnet_build_icmpv4_unreach()&quot;);
+
+   if(lctx)
+      p = libnet_build_icmpv4_unreach(
+                                    (u_int8_t)NUM2INT(type),
+                                    (u_int8_t)NUM2INT(code),
+                                    (u_int16_t)NUM2INT(csum),
+                                    (payload == Qnil ? NULL : StringValuePtr(payload)),
+                                    (payload_s == Qnil ? 0 : NUM2INT(payload_s)),
+                                    lctx,
+                                    (libnet_ptag_t)(tag == Qnil ? 0 : NUM2INT(tag))
+                                  );
+
+   return INT2FIX(p);                                  
+}</pre>
+</body>
+</html>

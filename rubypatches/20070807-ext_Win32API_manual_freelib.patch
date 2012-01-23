@@ -1,0 +1,66 @@
+Index: ext/Win32API/Win32API.c
+===================================================================
+--- ext/Win32API/Win32API.c	(revision 12888)
++++ ext/Win32API/Win32API.c	(working copy)
+@@ -27,7 +27,8 @@
+ Win32API_FreeLibrary(hdll)
+     HINSTANCE hdll;
+ {
+-    FreeLibrary(hdll);
++    if(hdll)
++        FreeLibrary(hdll);
+ }
+ 
+ static VALUE
+@@ -154,6 +155,7 @@
+     } param;
+ #define params param.params
+ 
++    VALUE obj_dll = rb_iv_get(obj, "__dll__");
+     VALUE obj_proc = rb_iv_get(obj, "__proc__");
+     VALUE obj_import = rb_iv_get(obj, "__import__");
+     VALUE obj_export = rb_iv_get(obj, "__export__");
+@@ -161,6 +163,8 @@
+     int items = rb_scan_args(argc, argv, "0*", &args);
+     int nimport = RARRAY(obj_import)->len;
+ 
++    if(NIL_P(obj_dll))
++        rb_raise(rb_eRuntimeError, "stale/freed object");
+ 
+     if (items != nimport)
+ 	rb_raise(rb_eRuntimeError, "wrong number of parameters: expected %d, got %d",
+@@ -205,11 +209,34 @@
+     }
+ }
+ 
++static VALUE
++Win32API_Free(VALUE self)
++{
++    VALUE v;
++    HINSTANCE hdll;
++
++    v = rb_iv_get(self, "__hdll__");
++    if(NIL_P(v))
++	return Qfalse;
++    
++    Data_Get_Struct(v, HINSTANCE, (HINSTANCE*)hdll);
++    if(!FreeLibrary(hdll)) 
++	rb_raise(rb_eRuntimeError, "failed to free library (error code: %d)", GetLastError());
++	
++    DATA_PTR(v) = NULL;
++    rb_iv_set(self, "__hdll__", Qnil);
++    rb_iv_set(self, "__dll__", Qnil);
++
++    return Qtrue;
++}
++
+ void
+ Init_Win32API()
+ {
+     VALUE cWin32API = rb_define_class("Win32API", rb_cObject);
+     rb_define_method(cWin32API, "initialize", Win32API_initialize, 4);
+     rb_define_method(cWin32API, "call", Win32API_Call, -1);
++    rb_define_method(cWin32API, "free", Win32API_Free, 0);
+     rb_define_alias(cWin32API,  "Call", "call");
++    rb_define_alias(cWin32API, "Free", "free");
+ }
